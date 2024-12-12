@@ -1,6 +1,7 @@
 const express = require('express');
 const { pokemonRouter } = require('./routes/pokemon');
 const { typeRouter } = require('./routes/type');
+const cors = require ('cors');
 const { pokemonsTypesRouter } = require('./routes/pokemons_types');
 
 // Crear clase
@@ -14,9 +15,13 @@ class Server {
         this.routes();
     }
 
+   
     middlewares() {
         this.app.use(express.json()); // Middleware para parsear los cuerpos de las solicitudes JSON
+        this.app.use(cors())
+
     }
+
 
     routes() {
         this.app.use('/pokemon', pokemonRouter);         // Rutas de Pokémon
